@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Contribute&display=swap" rel="stylesheet">
 
 <style>
-/* ================= PAGE ================= */
+/* ===== PAGE ===== */
 body{
     margin:0;
     height:100vh;
@@ -23,27 +23,17 @@ body{
 .banner{
     position:fixed;
     top:0;
-    width:30px;
+    width:28px;
     height:100%;
     background:linear-gradient(#ffc1cc,#ffd6e5);
 }
 .banner.left{left:0;}
 .banner.right{right:0;}
 
-/* Balloons */
-.balloon{
-    position:fixed;
-    font-size:30px;
-    animation:float 6s ease-in-out infinite;
-}
-@keyframes float{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-30px);}
-}
-
-/* ================= ENVELOPE ================= */
-.wrapper{
+/* ===== ENVELOPE ===== */
+.container{
     text-align:center;
+    z-index:2;
 }
 
 .envelope{
@@ -55,11 +45,10 @@ body{
 
 /* Base */
 .base{
-    width:100%;
-    height:100%;
+    position:absolute;
+    inset:0;
     background:#f7a8a6; /* salmon rose */
     border-radius:10px;
-    position:absolute;
     overflow:hidden;
 }
 
@@ -76,14 +65,13 @@ body{
 .base::before{left:0;}
 .base::after{right:0;}
 
-/* Flap (Euro flip) */
+/* Flap */
 .flap{
     position:absolute;
-    width:100%;
-    height:100%;
+    inset:0;
     background:#f7a8a6;
     transform-origin:center;
-    transition:transform 1.4s ease;
+    transition:transform 1.2s ease;
     z-index:3;
 }
 
@@ -92,8 +80,8 @@ body{
     position:absolute;
     top:50%;
     left:50%;
-    width:40px;
-    height:40px;
+    width:42px;
+    height:42px;
     background:crimson;
     transform:translate(-50%,-50%) rotate(45deg);
 }
@@ -101,71 +89,15 @@ body{
 .heart::after{
     content:"";
     position:absolute;
-    width:40px;
-    height:40px;
+    width:42px;
+    height:42px;
     background:crimson;
     border-radius:50%;
 }
-.heart::before{top:-20px;left:0;}
-.heart::after{left:-20px;top:0;}
+.heart::before{top:-21px;left:0;}
+.heart::after{left:-21px;top:0;}
 
-/* ================= PAPER ================= */
-.paper{
-    position:absolute;
-    width:90%;
-    height:85%;
-    background:#fffaf3;
-    top:8%;
-    left:5%;
-    border-radius:10px;
-    transform:translateY(100%);
-    transition:
-        transform 1.2s ease,
-        width 1.2s ease,
-        height 1.2s ease,
-        top 1.2s ease,
-        left 1.2s ease;
-    padding:0;
-    overflow:hidden;
-    z-index:1;
-}
-
-/* OPEN STATE */
-.open .flap{
-    transform:rotateY(180deg);
-}
-.open .heart{
-    display:none;
-}
-.open .paper{
-    transform:translateY(0);
-}
-
-/* FULL PAGE LETTER */
-.paper.expand{
-    position:fixed;
-    top:10%;
-    left:10%;
-    width:80%;
-    height:80%;
-    padding:40px;
-    z-index:10;
-}
-
-/* ================= TEXT ================= */
-.paper h1{
-    font-family:'Contribute',sans-serif;
-    text-align:center;
-    color:#c2185b;
-}
-.paper p{
-    font-family:'Great Vibes',cursive;
-    font-size:22px;
-    line-height:1.7;
-    color:#5a2a2a;
-}
-
-/* ================= BUTTONS ================= */
+/* ===== BUTTONS ===== */
 .buttons{
     margin-top:25px;
 }
@@ -183,82 +115,111 @@ button:hover{
     background:#c2185b;
     color:white;
 }
+
+/* ===== LETTER (FULL PAGE) ===== */
+.letter{
+    position:fixed;
+    inset:0;
+    background:#fffaf3;
+    display:none;
+    padding:60px;
+    z-index:10;
+    overflow-y:auto;
+}
+
+.letter h1{
+    font-family:'Contribute',sans-serif;
+    text-align:center;
+    color:#c2185b;
+    margin-bottom:30px;
+}
+.letter p{
+    font-family:'Great Vibes',cursive;
+    font-size:26px;
+    line-height:1.8;
+    color:#5a2a2a;
+    max-width:900px;
+    margin:0 auto 20px;
+}
+
+/* ===== OPEN STATE ===== */
+.open .flap{
+    transform:rotateY(180deg);
+}
+.open .heart{
+    display:none;
+}
 .hide{
     display:none;
+}
+.show{
+    display:block;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Decorations -->
 <div class="banner left"></div>
 <div class="banner right"></div>
 
-<div class="balloon" style="left:12%;top:25%;">🎈</div>
-<div class="balloon" style="right:14%;top:30%;">🎀</div>
+<div class="container" id="container">
 
-<div class="wrapper">
-
-    <!-- Envelope -->
     <div class="envelope" id="env">
         <div class="base"></div>
-        <div class="paper" id="paper">
-            <h1>Happy Birthday Babe 💕</h1>
-
-            <p>
-                To the girl who turns ordinary moments into magic,<br>
-                who fills my heart with warmth and my life with meaning —
-                this day is yours, babe, and so is my heart.
-            </p>
-
-            <p>
-                Happy 25th Birthday, babe 💖  
-                Every year you grow more beautiful, more graceful,
-                and more precious to me.
-            </p>
-
-            <p>
-                Babe, you are my calm in chaos,
-                my smile on difficult days,
-                and the love I thank life for every single day.
-            </p>
-
-            <p>
-                May your life be filled with laughter that never fades,
-                dreams that always come true,
-                and love that grows deeper with time.
-            </p>
-
-            <p style="text-align:center;color:#c2185b;">
-                I love you — today, tomorrow, and forever ❤️
-            </p>
-        </div>
-
         <div class="flap">
             <div class="heart"></div>
         </div>
     </div>
 
-    <!-- Buttons BELOW envelope -->
-    <div class="buttons" id="btns">
+    <div class="buttons" id="buttons">
         <button onclick="openLetter()">Open 💌</button>
         <button onclick="window.close()">Close ✨</button>
     </div>
 
 </div>
 
+<!-- FULL PAGE LETTER -->
+<div class="letter" id="letter">
+    <h1>Happy Birthday Babe 💕</h1>
+
+    <p>
+        To the girl who turns ordinary moments into magic,<br>
+        who fills my heart with warmth and my life with meaning —
+        this day is yours, babe, and so is my heart.
+    </p>
+
+    <p>
+        Happy 25th Birthday, babe 💖  
+        Every year you grow more beautiful, more graceful,
+        and more precious to me.
+    </p>
+
+    <p>
+        Babe, you are my calm in chaos,
+        my smile on difficult days,
+        and the love I thank life for every single day.
+    </p>
+
+    <p>
+        May your life be filled with laughter that never fades,
+        dreams that always come true,
+        and love that grows deeper with time.
+    </p>
+
+    <p style="text-align:center;color:#c2185b;">
+        I love you — today, tomorrow, and forever ❤️
+    </p>
+</div>
+
 <script>
 function openLetter(){
-    const env = document.getElementById("env");
-    const paper = document.getElementById("paper");
-    const btns = document.getElementById("btns");
-
-    env.classList.add("open");
-    btns.classList.add("hide");
+    document.getElementById("env").classList.add("open");
+    document.getElementById("buttons").classList.add("hide");
 
     setTimeout(()=>{
-        paper.classList.add("expand");
+        document.getElementById("container").classList.add("hide");
+        document.getElementById("letter").classList.add("show");
     },1200);
 }
 </script>
