@@ -19,37 +19,13 @@ body{
     overflow:hidden;
 }
 
-/* Side banners */
-.banner{
-    position:fixed;
-    top:0;
-    width:30px;
-    height:100%;
-    background:linear-gradient(#ffb7c5,#ffd1dc,#ffb7c5);
-    z-index:1;
-}
-.banner.left{left:0;}
-.banner.right{right:0;}
-
-/* Balloons */
-.balloon{
-    position:fixed;
-    font-size:32px;
-    animation:float 6s ease-in-out infinite;
-    z-index:1;
-}
-@keyframes float{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-30px);}
-}
-
-/* ================= CONTAINER ================= */
+/* ================= ENVELOPE PAGE ================= */
 .container{
     text-align:center;
     z-index:2;
 }
 
-/* ================= ENVELOPE ================= */
+/* Envelope */
 .envelope{
     position:relative;
     width:420px;
@@ -79,7 +55,7 @@ body{
 .base::before{left:0;}
 .base::after{right:0;}
 
-/* Flap (Euro flip) */
+/* Euro flip flap */
 .flap{
     position:absolute;
     inset:0;
@@ -114,7 +90,7 @@ body{
 .heart::before{top:-21px;left:0;}
 .heart::after{left:-21px;top:0;}
 
-/* ================= BUTTONS ================= */
+/* Buttons */
 .buttons{
     margin-top:25px;
 }
@@ -133,35 +109,66 @@ button:hover{
     color:white;
 }
 
-/* ================= LETTER ================= */
+/* ================= LETTER PAGE ================= */
 .letter{
     position:fixed;
     inset:0;
-    background:linear-gradient(#fffaf3,#fff5ea);
     display:none;
-    padding:60px;
+    background:#F5F1E8; /* colonial cream */
     z-index:10;
-    overflow-y:auto;
+    overflow:hidden;
+}
+
+/* Side banners ONLY on letter page */
+.letter::before,
+.letter::after{
+    content:"";
+    position:fixed;
+    top:0;
+    width:32px;
+    height:100%;
+    background:linear-gradient(#ffb7c5,#ffd1dc,#ffb7c5);
+}
+.letter::before{left:0;}
+.letter::after{right:0;}
+
+/* Balloons ONLY on letter page */
+.balloon{
+    position:fixed;
+    font-size:32px;
+    animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-30px);}
+}
+
+/* Letter paper */
+.paper{
+    max-width:900px;
+    margin:60px auto;
+    padding:50px;
+    background:linear-gradient(#fffaf3,#fff5ea);
+    border-radius:18px;
     box-shadow:0 20px 50px rgba(0,0,0,0.25);
 }
 
 /* Text */
-.letter h1{
+.paper h1{
     font-family:'Contribute',sans-serif;
     text-align:center;
     color:#c2185b;
     margin-bottom:30px;
 }
-.letter p{
+.paper p{
     font-family:'Great Vibes',cursive;
     font-size:26px;
     line-height:1.8;
     color:#5a2a2a;
-    max-width:900px;
-    margin:0 auto 20px;
+    text-align:center;
 }
 
-/* ================= STATES ================= */
+/* States */
 .open .flap{
     transform:rotateY(180deg);
 }
@@ -175,17 +182,9 @@ button:hover{
 
 <body>
 
-<!-- Decorations -->
-<div class="banner left"></div>
-<div class="banner right"></div>
-
-<div class="balloon" style="left:8%;top:20%;">🎈</div>
-<div class="balloon" style="right:10%;top:25%;">🎀</div>
-<div class="balloon" style="left:12%;bottom:25%;">💖</div>
-
+<!-- ENVELOPE PAGE -->
 <div class="container" id="container">
 
-    <!-- Envelope -->
     <div class="envelope" id="env">
         <div class="base"></div>
         <div class="flap">
@@ -193,7 +192,6 @@ button:hover{
         </div>
     </div>
 
-    <!-- Buttons -->
     <div class="buttons" id="buttons">
         <button onclick="openLetter()">Open 💌</button>
         <button onclick="window.close()">Close ✨</button>
@@ -201,37 +199,46 @@ button:hover{
 
 </div>
 
-<!-- FULL PAGE LETTER -->
+<!-- LETTER PAGE -->
 <div class="letter" id="letter">
-    <h1>Happy Birthday Babe 💕</h1>
 
-    <p>
-        To the girl who turns ordinary moments into magic,<br>
-        who fills my heart with warmth and my life with meaning —
-        this day is yours, babe, and so is my heart.
-    </p>
+    <!-- Balloons -->
+    <div class="balloon" style="left:10%;top:25%;">🎈</div>
+    <div class="balloon" style="right:12%;top:30%;">🎀</div>
+    <div class="balloon" style="left:15%;bottom:25%;">💖</div>
 
-    <p>
-        Happy 25th Birthday, babe 💖  
-        Every year you grow more beautiful, more graceful,
-        and more precious to me.
-    </p>
+    <div class="paper">
+        <h1>Happy Birthday Babe 💕</h1>
 
-    <p>
-        Babe, you are my calm in chaos,
-        my smile on difficult days,
-        and the love I thank life for every single day.
-    </p>
+        <p>
+            To the girl who turns ordinary moments into magic,<br>
+            who fills my heart with warmth and my life with meaning —
+            this day is yours, babe, and so is my heart.
+        </p>
 
-    <p>
-        May your life be filled with laughter that never fades,
-        dreams that always come true,
-        and love that grows deeper with time.
-    </p>
+        <p>
+            Happy 25th Birthday, babe 💖  
+            Every year you grow more beautiful, more graceful,
+            and more precious to me.
+        </p>
 
-    <p style="text-align:center;color:#c2185b;">
-        I love you — today, tomorrow, and forever ❤️
-    </p>
+        <p>
+            Babe, you are my calm in chaos,
+            my smile on difficult days,
+            and the love I thank life for every single day.
+        </p>
+
+        <p>
+            May your life be filled with laughter that never fades,
+            dreams that always come true,
+            and love that grows deeper with time.
+        </p>
+
+        <p style="color:#c2185b;">
+            I love you — today, tomorrow, and forever ❤️
+        </p>
+    </div>
+
 </div>
 
 <script>
