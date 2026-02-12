@@ -8,213 +8,258 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Contribute&display=swap" rel="stylesheet">
 
 <style>
-/* Page */
-body {
-    margin: 0;
-    height: 100vh;
-    background: #F5F1E8; /* colonial cream */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Great Vibes', cursive;
-    overflow: hidden;
+/* ================= PAGE ================= */
+body{
+    margin:0;
+    height:100vh;
+    background:#F5F1E8; /* colonial cream */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
 }
 
-/* Container */
-.wrapper {
-    text-align: center;
+/* Side banners */
+.banner{
+    position:fixed;
+    top:0;
+    width:30px;
+    height:100%;
+    background:linear-gradient(#ffc1cc,#ffd6e5);
+}
+.banner.left{left:0;}
+.banner.right{right:0;}
+
+/* Balloons */
+.balloon{
+    position:fixed;
+    font-size:30px;
+    animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-30px);}
 }
 
-/* Envelope */
-.envelope {
-    position: relative;
-    width: 420px;
-    height: 260px;
-    margin: auto;
-    perspective: 1200px;
+/* ================= ENVELOPE ================= */
+.wrapper{
+    text-align:center;
+}
+
+.envelope{
+    position:relative;
+    width:420px;
+    height:260px;
+    perspective:1200px;
 }
 
 /* Base */
-.envelope-base {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #f7a8a6; /* salmon rose */
-    border-radius: 10px;
-    overflow: hidden;
+.base{
+    width:100%;
+    height:100%;
+    background:#f7a8a6; /* salmon rose */
+    border-radius:10px;
+    position:absolute;
+    overflow:hidden;
 }
 
-/* Side colors */
-.envelope-base::before,
-.envelope-base::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 60px;
-    height: 100%;
-    background: #f4c2a1; /* melon */
+/* Melon sides */
+.base::before,
+.base::after{
+    content:"";
+    position:absolute;
+    top:0;
+    width:60px;
+    height:100%;
+    background:#f4c2a1; /* melon */
 }
-.envelope-base::before { left: 0; }
-.envelope-base::after { right: 0; }
+.base::before{left:0;}
+.base::after{right:0;}
 
-/* Euro flip flap */
-.flap {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #f7a8a6;
-    transform-origin: center;
-    transition: transform 1.5s ease;
-    z-index: 3;
+/* Flap (Euro flip) */
+.flap{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#f7a8a6;
+    transform-origin:center;
+    transition:transform 1.4s ease;
+    z-index:3;
 }
 
 /* Heart seal */
-.heart {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 40px;
-    height: 40px;
-    background: crimson;
-    transform: translate(-50%, -50%) rotate(45deg);
+.heart{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:40px;
+    height:40px;
+    background:crimson;
+    transform:translate(-50%,-50%) rotate(45deg);
 }
 .heart::before,
-.heart::after {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background: crimson;
-    border-radius: 50%;
+.heart::after{
+    content:"";
+    position:absolute;
+    width:40px;
+    height:40px;
+    background:crimson;
+    border-radius:50%;
 }
-.heart::before { top: -20px; left: 0; }
-.heart::after { left: -20px; top: 0; }
+.heart::before{top:-20px;left:0;}
+.heart::after{left:-20px;top:0;}
 
-/* Paper */
-.paper {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: #fffaf3;
-    border-radius: 12px;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-    transition: all 1.6s ease;
-    z-index: 10;
-    padding: 0;
-}
-
-/* Open state */
-.open .flap {
-    transform: rotateY(180deg);
-}
-.open .heart {
-    display: none;
-}
-.open .paper {
-    width: 80%;
-    height: 80%;
-    padding: 40px;
-}
-.open .buttons {
-    display: none;
+/* ================= PAPER ================= */
+.paper{
+    position:absolute;
+    width:90%;
+    height:85%;
+    background:#fffaf3;
+    top:8%;
+    left:5%;
+    border-radius:10px;
+    transform:translateY(100%);
+    transition:
+        transform 1.2s ease,
+        width 1.2s ease,
+        height 1.2s ease,
+        top 1.2s ease,
+        left 1.2s ease;
+    padding:0;
+    overflow:hidden;
+    z-index:1;
 }
 
-/* Text */
-.paper h1 {
-    font-family: 'Contribute', sans-serif;
-    text-align: center;
-    color: #c2185b;
-    margin-bottom: 25px;
+/* OPEN STATE */
+.open .flap{
+    transform:rotateY(180deg);
 }
-.paper p {
-    font-size: 22px;
-    line-height: 1.7;
-    color: #5a2a2a;
+.open .heart{
+    display:none;
+}
+.open .paper{
+    transform:translateY(0);
 }
 
-/* Buttons */
-.buttons {
-    margin-top: 25px;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
+/* FULL PAGE LETTER */
+.paper.expand{
+    position:fixed;
+    top:10%;
+    left:10%;
+    width:80%;
+    height:80%;
+    padding:40px;
+    z-index:10;
 }
-button {
-    padding: 10px 26px;
-    border-radius: 25px;
-    border: 2px solid #c2185b; /* raspberry */
-    background: #F5F1E8;
-    color: #c2185b;
-    font-weight: bold;
-    cursor: pointer;
+
+/* ================= TEXT ================= */
+.paper h1{
+    font-family:'Contribute',sans-serif;
+    text-align:center;
+    color:#c2185b;
 }
-button:hover {
-    background: #c2185b;
-    color: white;
+.paper p{
+    font-family:'Great Vibes',cursive;
+    font-size:22px;
+    line-height:1.7;
+    color:#5a2a2a;
+}
+
+/* ================= BUTTONS ================= */
+.buttons{
+    margin-top:25px;
+}
+button{
+    padding:10px 26px;
+    margin:0 10px;
+    border-radius:25px;
+    border:2px solid #c2185b; /* raspberry */
+    background:#F5F1E8;
+    color:#c2185b;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover{
+    background:#c2185b;
+    color:white;
+}
+.hide{
+    display:none;
 }
 </style>
 </head>
 
 <body>
 
+<!-- Decorations -->
+<div class="banner left"></div>
+<div class="banner right"></div>
+
+<div class="balloon" style="left:12%;top:25%;">🎈</div>
+<div class="balloon" style="right:14%;top:30%;">🎀</div>
+
 <div class="wrapper">
 
     <!-- Envelope -->
     <div class="envelope" id="env">
-        <div class="envelope-base"></div>
+        <div class="base"></div>
+        <div class="paper" id="paper">
+            <h1>Happy Birthday Babe 💕</h1>
+
+            <p>
+                To the girl who turns ordinary moments into magic,<br>
+                who fills my heart with warmth and my life with meaning —
+                this day is yours, babe, and so is my heart.
+            </p>
+
+            <p>
+                Happy 25th Birthday, babe 💖  
+                Every year you grow more beautiful, more graceful,
+                and more precious to me.
+            </p>
+
+            <p>
+                Babe, you are my calm in chaos,
+                my smile on difficult days,
+                and the love I thank life for every single day.
+            </p>
+
+            <p>
+                May your life be filled with laughter that never fades,
+                dreams that always come true,
+                and love that grows deeper with time.
+            </p>
+
+            <p style="text-align:center;color:#c2185b;">
+                I love you — today, tomorrow, and forever ❤️
+            </p>
+        </div>
+
         <div class="flap">
             <div class="heart"></div>
         </div>
     </div>
 
     <!-- Buttons BELOW envelope -->
-    <div class="buttons">
+    <div class="buttons" id="btns">
         <button onclick="openLetter()">Open 💌</button>
         <button onclick="window.close()">Close ✨</button>
     </div>
 
 </div>
 
-<!-- Paper -->
-<div class="paper" id="paper">
-    <h1>Happy Birthday Babe 💕</h1>
-
-    <p>
-        To the girl who turns ordinary moments into magic,<br>
-        who fills my heart with warmth and my life with meaning —
-        this day is yours, babe, and so is my heart.
-    </p>
-
-    <p>
-        Happy 25th Birthday, babe 💖  
-        Every year you grow more beautiful, more graceful,
-        and more precious to me.
-    </p>
-
-    <p>
-        Babe, you are my calm in chaos,
-        my smile on difficult days,
-        and the love I thank life for every single day.
-    </p>
-
-    <p>
-        May your life be filled with laughter that never fades,
-        dreams that always come true,
-        and love that grows deeper with time.
-    </p>
-
-    <p style="text-align:center;color:#c2185b;">
-        I love you — today, tomorrow, and forever ❤️
-    </p>
-</div>
-
 <script>
-function openLetter() {
-    document.getElementById("env").classList.add("open");
-    document.getElementById("paper").classList.add("open");
+function openLetter(){
+    const env = document.getElementById("env");
+    const paper = document.getElementById("paper");
+    const btns = document.getElementById("btns");
+
+    env.classList.add("open");
+    btns.classList.add("hide");
+
+    setTimeout(()=>{
+        paper.classList.add("expand");
+    },1200);
 }
 </script>
 
