@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Contribute&display=swap" rel="stylesheet">
 
 <style>
-/* ===== PAGE ===== */
+/* ================= PAGE ================= */
 body{
     margin:0;
     height:100vh;
@@ -23,19 +23,33 @@ body{
 .banner{
     position:fixed;
     top:0;
-    width:28px;
+    width:30px;
     height:100%;
-    background:linear-gradient(#ffc1cc,#ffd6e5);
+    background:linear-gradient(#ffb7c5,#ffd1dc,#ffb7c5);
+    z-index:1;
 }
 .banner.left{left:0;}
 .banner.right{right:0;}
 
-/* ===== ENVELOPE ===== */
+/* Balloons */
+.balloon{
+    position:fixed;
+    font-size:32px;
+    animation:float 6s ease-in-out infinite;
+    z-index:1;
+}
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-30px);}
+}
+
+/* ================= CONTAINER ================= */
 .container{
     text-align:center;
     z-index:2;
 }
 
+/* ================= ENVELOPE ================= */
 .envelope{
     position:relative;
     width:420px;
@@ -60,12 +74,12 @@ body{
     top:0;
     width:60px;
     height:100%;
-    background:#f4c2a1; /* melon */
+    background:linear-gradient(#f4c2a1,#f7d0b5);
 }
 .base::before{left:0;}
 .base::after{right:0;}
 
-/* Flap */
+/* Flap (Euro flip) */
 .flap{
     position:absolute;
     inset:0;
@@ -84,6 +98,9 @@ body{
     height:42px;
     background:crimson;
     transform:translate(-50%,-50%) rotate(45deg);
+    box-shadow:
+        inset -4px -4px 0 rgba(0,0,0,0.15),
+        0 4px 8px rgba(0,0,0,0.25);
 }
 .heart::before,
 .heart::after{
@@ -97,7 +114,7 @@ body{
 .heart::before{top:-21px;left:0;}
 .heart::after{left:-21px;top:0;}
 
-/* ===== BUTTONS ===== */
+/* ================= BUTTONS ================= */
 .buttons{
     margin-top:25px;
 }
@@ -116,17 +133,19 @@ button:hover{
     color:white;
 }
 
-/* ===== LETTER (FULL PAGE) ===== */
+/* ================= LETTER ================= */
 .letter{
     position:fixed;
     inset:0;
-    background:#fffaf3;
+    background:linear-gradient(#fffaf3,#fff5ea);
     display:none;
     padding:60px;
     z-index:10;
     overflow-y:auto;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
 }
 
+/* Text */
 .letter h1{
     font-family:'Contribute',sans-serif;
     text-align:center;
@@ -142,29 +161,31 @@ button:hover{
     margin:0 auto 20px;
 }
 
-/* ===== OPEN STATE ===== */
+/* ================= STATES ================= */
 .open .flap{
     transform:rotateY(180deg);
 }
 .open .heart{
     display:none;
 }
-.hide{
-    display:none;
-}
-.show{
-    display:block;
-}
+.hide{display:none;}
+.show{display:block;}
 </style>
 </head>
 
 <body>
 
+<!-- Decorations -->
 <div class="banner left"></div>
 <div class="banner right"></div>
 
+<div class="balloon" style="left:8%;top:20%;">🎈</div>
+<div class="balloon" style="right:10%;top:25%;">🎀</div>
+<div class="balloon" style="left:12%;bottom:25%;">💖</div>
+
 <div class="container" id="container">
 
+    <!-- Envelope -->
     <div class="envelope" id="env">
         <div class="base"></div>
         <div class="flap">
@@ -172,6 +193,7 @@ button:hover{
         </div>
     </div>
 
+    <!-- Buttons -->
     <div class="buttons" id="buttons">
         <button onclick="openLetter()">Open 💌</button>
         <button onclick="window.close()">Close ✨</button>
