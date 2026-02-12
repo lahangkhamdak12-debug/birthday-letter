@@ -113,13 +113,19 @@ button:hover{
 .letter{
     position:fixed;
     inset:0;
-    display:none;
-    background:#F5F1E8; /* colonial cream */
+    background:#F5F1E8;
     z-index:10;
-    overflow:hidden;
+    display:none;
+
+    /* CENTER LETTER ON ALL SCREENS */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:auto;
 }
 
-/* Side banners ONLY on letter page */
+/* Side banners (letter page only) */
 .letter::before,
 .letter::after{
     content:"";
@@ -132,7 +138,7 @@ button:hover{
 .letter::before{left:0;}
 .letter::after{right:0;}
 
-/* Balloons ONLY on letter page */
+/* Balloons (letter page only) */
 .balloon{
     position:fixed;
     font-size:32px;
@@ -146,17 +152,17 @@ button:hover{
 /* Letter paper */
 .paper{
     max-width:900px;
-    margin:60px auto;
-    padding:50px;
+    width:90%;
+    padding:40px;
     background:linear-gradient(#fffaf3,#fff5ea);
     border-radius:18px;
     box-shadow:0 20px 50px rgba(0,0,0,0.25);
+    text-align:center;
 }
 
 /* Text */
 .paper h1{
     font-family:'Contribute',sans-serif;
-    text-align:center;
     color:#c2185b;
     margin-bottom:30px;
 }
@@ -165,18 +171,13 @@ button:hover{
     font-size:26px;
     line-height:1.8;
     color:#5a2a2a;
-    text-align:center;
 }
 
 /* States */
-.open .flap{
-    transform:rotateY(180deg);
-}
-.open .heart{
-    display:none;
-}
+.open .flap{transform:rotateY(180deg);}
+.open .heart{display:none;}
 .hide{display:none;}
-.show{display:block;}
+.show{display:flex;}
 </style>
 </head>
 
