@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <title>Love Letter for Babe 💖</title>
 
-<!-- Google Fonts -->
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Contribute&display=swap" rel="stylesheet">
 
 <style>
-/* Page Background */
+/* Page */
 body {
     margin: 0;
     height: 100vh;
@@ -16,65 +16,67 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     font-family: 'Great Vibes', cursive;
+    overflow: hidden;
 }
 
-/* Decorations */
-.banner {
-    position: absolute;
-    width: 20px;
-    height: 100%;
-    background: linear-gradient(#ffb7c5, #ffd1dc);
-    top: 0;
-}
-.banner.left { left: 0; }
-.banner.right { right: 0; }
-
-.balloon {
-    position: absolute;
-    font-size: 30px;
-    animation: float 6s infinite ease-in-out;
-}
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-25px); }
-    100% { transform: translateY(0); }
+/* Container */
+.wrapper {
+    text-align: center;
 }
 
 /* Envelope */
-.envelope-container {
+.envelope {
     position: relative;
     width: 420px;
-    height: 280px;
-    background: #f7a8a6; /* salmon rose top & bottom */
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 260px;
+    margin: auto;
+    perspective: 1200px;
 }
 
-/* Side Colors */
-.envelope-container::before,
-.envelope-container::after {
+/* Base */
+.envelope-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #f7a8a6; /* salmon rose */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Side colors */
+.envelope-base::before,
+.envelope-base::after {
     content: "";
     position: absolute;
+    top: 0;
     width: 60px;
     height: 100%;
     background: #f4c2a1; /* melon */
-    top: 0;
 }
-.envelope-container::before { left: 0; }
-.envelope-container::after { right: 0; }
+.envelope-base::before { left: 0; }
+.envelope-base::after { right: 0; }
 
-/* Heart Seal */
+/* Euro flip flap */
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #f7a8a6;
+    transform-origin: center;
+    transition: transform 1.5s ease;
+    z-index: 3;
+}
+
+/* Heart seal */
 .heart {
     position: absolute;
+    top: 50%;
+    left: 50%;
     width: 40px;
     height: 40px;
     background: crimson;
-    transform: rotate(45deg);
-    z-index: 5;
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 .heart::before,
 .heart::after {
@@ -88,23 +90,36 @@ body {
 .heart::before { top: -20px; left: 0; }
 .heart::after { left: -20px; top: 0; }
 
-/* Letter Paper */
+/* Paper */
 .paper {
-    position: absolute;
-    width: 90%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 0;
     height: 0;
     background: #fffaf3;
-    top: 10px;
+    border-radius: 12px;
+    transform: translate(-50%, -50%);
     overflow: hidden;
-    border-radius: 8px;
-    transition: height 1.5s ease;
-    z-index: 3;
-    padding: 0 25px;
+    transition: all 1.6s ease;
+    z-index: 10;
+    padding: 0;
 }
 
-/* Opened */
-.envelope-container.open .paper {
-    height: 420px;
+/* Open state */
+.open .flap {
+    transform: rotateY(180deg);
+}
+.open .heart {
+    display: none;
+}
+.open .paper {
+    width: 80%;
+    height: 80%;
+    padding: 40px;
+}
+.open .buttons {
+    display: none;
 }
 
 /* Text */
@@ -112,8 +127,8 @@ body {
     font-family: 'Contribute', sans-serif;
     text-align: center;
     color: #c2185b;
+    margin-bottom: 25px;
 }
-
 .paper p {
     font-size: 22px;
     line-height: 1.7;
@@ -122,21 +137,19 @@ body {
 
 /* Buttons */
 .buttons {
-    margin-top: 20px;
+    margin-top: 25px;
     display: flex;
     gap: 20px;
     justify-content: center;
 }
-
 button {
-    padding: 10px 22px;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 10px 26px;
     border-radius: 25px;
-    cursor: pointer;
     border: 2px solid #c2185b; /* raspberry */
+    background: #F5F1E8;
     color: #c2185b;
-    background: #F5F1E8; /* match page bg */
+    font-weight: bold;
+    cursor: pointer;
 }
 button:hover {
     background: #c2185b;
@@ -147,65 +160,61 @@ button:hover {
 
 <body>
 
-<!-- Decorations -->
-<div class="banner left"></div>
-<div class="banner right"></div>
+<div class="wrapper">
 
-<div class="balloon" style="left:10%; top:20%;">🎈</div>
-<div class="balloon" style="right:12%; top:25%;">🎀</div>
-<div class="balloon" style="left:18%; bottom:20%;">💖</div>
-
-<!-- Envelope -->
-<div class="envelope-container" id="envelope">
-
-    <div class="heart"></div>
-
-    <div class="paper">
-        <h1>Happy Birthday Babe 💕</h1>
-
-        <p>
-            To the girl who turns ordinary moments into magic,<br>
-            who fills my heart with warmth and my life with meaning —
-            this day is yours, babe, and so is my heart.
-        </p>
-
-        <p>
-            Happy 25th Birthday, babe 💖  
-            Every year you grow more beautiful, more graceful,
-            and more precious to me.
-        </p>
-
-        <p>
-            Babe, you are my calm in chaos,
-            my smile on difficult days,
-            and the love I thank life for every single day.
-        </p>
-
-        <p>
-            May your life be filled with laughter that never fades,
-            dreams that always come true,
-            and love that grows deeper with time.
-        </p>
-
-        <p style="text-align:center; color:#c2185b;">
-            I love you — today, tomorrow, and forever ❤️
-        </p>
+    <!-- Envelope -->
+    <div class="envelope" id="env">
+        <div class="envelope-base"></div>
+        <div class="flap">
+            <div class="heart"></div>
+        </div>
     </div>
+
+    <!-- Buttons BELOW envelope -->
+    <div class="buttons">
+        <button onclick="openLetter()">Open 💌</button>
+        <button onclick="window.close()">Close ✨</button>
+    </div>
+
 </div>
 
-<!-- Buttons -->
-<div class="buttons">
-    <button onclick="openLetter()">Open 💌</button>
-    <button onclick="closeLetter()">Close ✨</button>
+<!-- Paper -->
+<div class="paper" id="paper">
+    <h1>Happy Birthday Babe 💕</h1>
+
+    <p>
+        To the girl who turns ordinary moments into magic,<br>
+        who fills my heart with warmth and my life with meaning —
+        this day is yours, babe, and so is my heart.
+    </p>
+
+    <p>
+        Happy 25th Birthday, babe 💖  
+        Every year you grow more beautiful, more graceful,
+        and more precious to me.
+    </p>
+
+    <p>
+        Babe, you are my calm in chaos,
+        my smile on difficult days,
+        and the love I thank life for every single day.
+    </p>
+
+    <p>
+        May your life be filled with laughter that never fades,
+        dreams that always come true,
+        and love that grows deeper with time.
+    </p>
+
+    <p style="text-align:center;color:#c2185b;">
+        I love you — today, tomorrow, and forever ❤️
+    </p>
 </div>
 
 <script>
 function openLetter() {
-    document.getElementById("envelope").classList.add("open");
-}
-
-function closeLetter() {
-    window.close();
+    document.getElementById("env").classList.add("open");
+    document.getElementById("paper").classList.add("open");
 }
 </script>
 
